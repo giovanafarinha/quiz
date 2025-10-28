@@ -1,0 +1,32 @@
+@import url('https://fonts.cdnfonts.com/css/new-walt-disney-font');
+ 
+html {
+height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body{
+    background: linear-gradient(180deg, #1E3A8A 0%, #312E81 100%);
+color: #FDFDFD;
+background-size: cover;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    font-family: 'New Walt Disney Font', sans-serif;
+    font-size: 70px;                                      
+}
+
+#start-btn {
+    padding: 5px 24px;
+border-radius: 10px;
+}
+
+#next-btn {
+    padding: 5px 24px;
+border-radius: 10px;
+}
