@@ -1,0 +1,21 @@
+{
+  "name": "quiz",
+  "version": "1.0.0",
+  "description": "Pour ce projet, nous sommes un binôme composé de Giovana et Alison et nous devons créer un quiz.\r Nous avons décidées de choisir pour thème : Disney avec 5 questions.\r Nous utiliserons du HTML, CSS, TS",
+  "main": "index.js",
+
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/giovanafarinha/quiz.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/giovanafarinha/quiz/issues"
+  },
+  "homepage": "https://github.com/giovanafarinha/quiz#readme"
+}
