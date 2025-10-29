@@ -1,28 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quiz</title>
-    <link rel="stylesheet" href="./src/css/style.css"/>
+    <link rel="stylesheet" href="./src/css/style.css" />
     <script defer type="module" src="./dist/app.js"></script>
-    <link href="https://fonts.cdnfonts.com/css/new-walt-disney-font" rel="stylesheet">
-                
-</head>
-<body>
+    <link
+      href="https://fonts.cdnfonts.com/css/new-walt-disney-font"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <main id="quiz">
-        <h1>Disney World Quiz</h1>
-        <div id="question-container">
-            <p id="question"></p>
-            <div id="answers"></div>
+      <h1>Disney World Quiz</h1>
+      <div id="question-container">
+        <p id="question"></p>
+        <div id="answers" class="visible">
+          <button class="answer">answer 1</button>
+          <button class="answer">answer 2</button>
+          <button class="answer">answer 3</button>
+          <button class="answer">answer 4</button>
         </div>
-    <p id="feedback"></p>
-    <div id="actions">
-        <button  id="start-btn">Commencer le Quiz</button>
-        <button id="next-btn">Question suivante</button>
-    </div>
+      </div>
+      <p id="feedback"></p>
+      <div id="actions">
+        <button id="start-btn">Commencer le Quiz</button>
+        <div>
+          <button id="next-btn" class="next-answer">Question suivante</button>
+        </div>
+      </div>
     </main>
 
-   <footer>This project was coded with passion by Alison and Giovana</footer> 
-</body>
+    <footer>This project was coded with passion by Alison and Giovana</footer>
+  </body>
 </html>

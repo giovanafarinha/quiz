@@ -1,35 +1,42 @@
 const question = [
     {
         question: "Dans Le Roi Lion, comment s’appelle le père de Simba ?",
-        answers: ["Mufasa, Scar, Rafiki, Zazu"],
-        correctAnswer: 1
+        answers: ["Mufasa", "Scar", "Rafiki", "Zazu"],
+        correctAnswer: 1,
     },
     {
         question: "Quel est le nom de la princesse dans La Belle et la Bête ?",
-        answers: ["Aurore, Cendrillon, Belle, Ariel"],
-        correctAnswer: 3
+        answers: ["Aurore", "Cendrillon", "Belle", "Ariel"],
+        correctAnswer: 3,
     },
     {
         question: "Dans Toy Story, quel est le nom du cow-boy en plastique ?",
-        answers: ["Buzz, Woody, Jessie, Rex"],
-        correctAnswer: 2
+        answers: ["Buzz", "Woody", "Jessie", "Rex"],
+        correctAnswer: 2,
     },
     {
         question: "Dans Blanche-Neige et les Sept Nains, quel est le véritable nom de la Méchante Reine ?",
-        answers: ["Morgane, Maléfique, Grimhilde, Gothel"],
-        correctAnswer: 3
+        answers: ["Morgane", "Maléfique", "Grimhilde", "Gothel"],
+        correctAnswer: 3,
     },
     {
         question: "Dans La Reine des Neiges, quel est le nom du royaume d’Elsa et Anna ?",
-        answers: ["Arendelle, Athènes, Atlantica, Atlantide"],
-        correctAnswer: 1
+        answers: ["Arendelle", "Athènes", "Atlantica", "Atlantide"],
+        correctAnswer: 1,
     },
 ];
 let currentQuestionIndex = 0;
 let score = 0;
-document.getElementById("start-btn").addEventListener("click", startQuiz);
-function startQuiz() {
-    document.getElementById("start-btn").innerHTML = "Recommencer le quiz";
-}
+const startButton = document.getElementById("start-btn");
+const nextButton = document.getElementById("next-btn");
+const showQuestion = document.getElementById("question");
+const showAnswers = document.getElementById("answers");
+//const startButton: HTMLElement | null = document.getElrementById("start-btn");`
+startButton.addEventListener("click", () => {
+    startButton.innerText = "Recommencer le quiz";
+    showQuestion.innerText = `${question[currentQuestionIndex]?.question}`;
+    showAnswers.classList.remove("visible");
+    nextButton.classList.remove("next-answer");
+});
 export {};
 //# sourceMappingURL=app.js.map
