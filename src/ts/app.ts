@@ -1,7 +1,18 @@
 const question = [
   {
     question: "Dans Le Roi Lion, comment s’appelle le père de Simba ?",
-    answers: ["Mufasa", "Scar", "Rafiki", "Zazu"],
+    answers: [
+      { text: "Mufasa", correct: true },
+      {
+        text: "Scar",
+        correct: false,
+      },
+      {
+        text: "Rafiki",
+        correct: false,
+      },
+      { text: "Zazu", correct: false },
+    ],
     correctAnswer: 1,
   },
 
@@ -30,20 +41,42 @@ const question = [
   },
 ];
 
-let currentQuestionIndex = 0;
-let score = 0;
-
 const startButton = <HTMLButtonElement>document.getElementById("start-btn");
 const nextButton = <HTMLButtonElement>document.getElementById("next-btn");
 const showQuestion = <HTMLButtonElement>document.getElementById("question");
 const showAnswers = <HTMLButtonElement>document.getElementById("answers");
 
 //const startButton: HTMLElement | null = document.getElrementById("start-btn");`
-
+let currentQuestionIndex = 0;
+let score = 0;
 startButton.addEventListener("click", () => {
+  currentQuestionIndex = 0;
+  score = 0;
   startButton.innerText = "Recommencer le quiz";
   showQuestion.innerText = `${question[currentQuestionIndex]?.question}`;
 
   showAnswers.classList.remove("visible");
-  nextButton.classList.remove("next-answer");
+
+  renderQuestion();
 });
+
+function renderQuestion() {
+  resetState(); ///this will reset by each question
+  let currentQuestion: any = question[currentQuestionIndex];
+  let questionNumber = currentQuestionIndex + 1;
+  showQuestion.innerHTML = questionNumber + ". " + currentQuestion.question;
+
+  currentQuestion.answers.forEach((answers: any) => {
+    const button = <HTMLElement>document.createElement("button");
+    button.innerHTML = answers.text;
+    button.classList.add("btn");
+    showAnswers.appendChild(button);
+  });
+}
+function resetState() {
+  ///removed the answer 1/ answer 2/ answer 3/
+  nextButton.style.display = "flex";
+  while (showAnswers.firstChild) {
+    showAnswers.removeChild(showAnswers.firstChild);
+  }
+}
