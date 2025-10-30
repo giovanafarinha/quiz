@@ -13,29 +13,69 @@ const question = [
             },
             { text: "Zazu", correct: false },
         ],
-        correctAnswer: 1,
     },
     {
         question: "Quel est le nom de la princesse dans La Belle et la Bête ?",
-        answers: ["Aurore", "Cendrillon", "Belle", "Ariel"],
-        correctAnswer: 3,
+        answers: [
+            { text: "Aurore", correct: false },
+            {
+                text: "Cendrillon",
+                correct: false,
+            },
+            {
+                text: "Belle",
+                correct: true,
+            },
+            { text: "Ariel", correct: false },
+        ],
     },
     {
         question: "Dans Toy Story, quel est le nom du cow-boy en plastique ?",
-        answers: ["Buzz", "Woody", "Jessie", "Rex"],
-        correctAnswer: 2,
+        answers: [
+            { text: "Buzz", correct: false },
+            {
+                text: "Woody",
+                correct: true,
+            },
+            {
+                text: "Jessie",
+                correct: false,
+            },
+            { text: "Rex", correct: false },
+        ],
     },
     {
         question: "Dans Blanche-Neige et les Sept Nains, quel est le véritable nom de la Méchante Reine ?",
-        answers: ["Morgane", "Maléfique", "Grimhilde", "Gothel"],
-        correctAnswer: 3,
+        answers: [
+            { text: "Morgane", correct: false },
+            {
+                text: "Maléfique",
+                correct: false,
+            },
+            {
+                text: "Grimhilde",
+                correct: true,
+            },
+            { text: "Gothel", correct: false },
+        ],
     },
     {
         question: "Dans La Reine des Neiges, quel est le nom du royaume d’Elsa et Anna ?",
-        answers: ["Arendelle", "Athènes", "Atlantica", "Atlantide"],
-        correctAnswer: 1,
+        answers: [
+            { text: "Arendelle", correct: true },
+            {
+                text: "Athènes",
+                correct: false,
+            },
+            {
+                text: "Atlantica",
+                correct: false,
+            },
+            { text: "Atlantide", correct: false },
+        ],
     },
 ];
+let isenabled = true;
 const startButton = document.getElementById("start-btn");
 const nextButton = document.getElementById("next-btn");
 const showQuestion = document.getElementById("question");
@@ -61,8 +101,29 @@ function renderQuestion() {
         button.innerHTML = answers.text;
         button.classList.add("btn");
         showAnswers.appendChild(button);
+        button.addEventListener("click", () => {
+            if (isenabled) {
+                let feedbackElement = (document.getElementById("feedback"));
+                if (answers.correct === true) {
+                    feedbackElement.innerText = "Vrai ";
+                    button.style.backgroundColor = "green";
+                }
+                else {
+                    feedbackElement.innerText = "Faux";
+                    button.style.backgroundColor = "red";
+                }
+                isenabled = false;
+            }
+        });
     });
 }
+nextButton.addEventListener("click", () => {
+    isenabled = true;
+    question.forEach(() => {
+        currentQuestionIndex++;
+        alert(`${question[currentQuestionIndex]?.question}`);
+    });
+});
 function resetState() {
     ///removed the answer 1/ answer 2/ answer 3/
     nextButton.style.display = "flex";
