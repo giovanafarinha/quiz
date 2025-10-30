@@ -21,6 +21,12 @@ h1 {
   font-size: 70px;
 }
 
+#actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+}
 #start-btn {
   padding: 5px 24px;
   border-radius: 10px;
@@ -29,6 +35,7 @@ h1 {
 #next-btn {
   padding: 5px 24px;
   border-radius: 10px;
+  display: none;
 }
 
 #answers {
@@ -44,6 +51,14 @@ h1 {
   display: none !important;
 }
 
-.next-answer {
-  visibility: hidden !important;
+.btn {
+  border: 1px solid #312e81;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.btn:hover {
+  background-color: black;
+  color: #fff;
 }
