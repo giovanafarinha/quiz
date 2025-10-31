@@ -1,4 +1,4 @@
-const question = [
+const questions = [
   {
     question: "Dans Le Roi Lion, comment s’appelle le père de Simba ?",
     answers: [
@@ -92,14 +92,14 @@ startButton.addEventListener("click", () => {
   currentQuestionIndex = 0;
   score = 0;
   startButton.innerText = "Recommencer le quiz";
-  showQuestion.innerText = `${question[currentQuestionIndex]?.question}`;
+  showQuestion.innerText = `${questions[currentQuestionIndex]?.question}`;
 
   showAnswers.classList.remove("visible");
-  renderQuestion();
+  renderAnswerButtons();
 });
-function renderQuestion() {
+function renderAnswerButtons() {
   resetState(); ///this will reset by each question
-  let currentQuestion: any = question[currentQuestionIndex];
+  let currentQuestion: any = questions[currentQuestionIndex];
   let questionNumber = currentQuestionIndex + 1;
   showQuestion.innerHTML = questionNumber + ". " + currentQuestion.question;
 
@@ -129,10 +129,12 @@ function renderQuestion() {
 
 nextButton.addEventListener("click", () => {
   isenabled = true;
-  question.forEach(() => {
-    currentQuestionIndex++;
-    alert(`${question[currentQuestionIndex]?.question}`);
+  currentQuestionIndex++;
+  questions.forEach(() => {
+    console.log(`${questions[currentQuestionIndex]?.question}`);
   });
+  showQuestion.innerText = `${questions[currentQuestionIndex]?.question}`;
+  renderAnswerButtons();
 });
 
 function resetState() {
