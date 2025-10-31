@@ -16,18 +16,18 @@ const questions = [
   },
 
   {
-    question: "Quel est le nom de la princesse dans La Belle et la Bête ?",
+    question: "Dans Les Nouveaux Héros, quel est le nom du robot créé par Tadashi ?",
     answers: [
-      { text: "Aurore", correct: false },
+      { text: "Maxbot", correct: false },
       {
-        text: "Cendrillon",
-        correct: false,
-      },
-      {
-        text: "Belle",
+        text: "Baymax",
         correct: true,
       },
-      { text: "Ariel", correct: false },
+      {
+        text: "Bot-X",
+        correct: false,
+      },
+      { text: "Tadash-01", correct: false },
     ],
   },
 
@@ -78,14 +78,97 @@ const questions = [
       { text: "Atlantide", correct: false },
     ],
   },
+  {
+    question:
+      "Dans Le Monde de Nemo, comment s’appelle le requin végétarien qui devient ami avec Marlin ?",
+    answers: [
+      { text: "Bruce", correct: true },
+      {
+        text: "Marlin",
+        correct: false,
+      },
+      {
+        text: "Crush",
+        correct: false,
+      },
+      { text: "Squirt", correct: false },
+    ],
+  },
+  {
+    question:
+      "Dans les Indestructibles, quel est le pouvoir de Violette ?",
+    answers: [
+      { text: "Elle court très vite", correct: false },
+      {
+        text: "Elle vole",
+        correct: false,
+      },
+      {
+        text: "Elle devient invisible et crée des boucliers",
+        correct: true,
+      },
+      { text: "Elle change d'apparence", correct: false },
+    ],
+  },
+  {
+    question:
+      "Dans Star Wars, quel est le nom du petit extraterrestre vert souvent appelé Baby Yoda ?",
+    answers: [
+      { text: "Yoda", correct: false },
+      {
+        text: "Yaddle",
+        correct: false,
+      },
+      {
+        text: "Grogu",
+        correct: true,
+      },
+      { text: "Gizmo", correct: false },
+    ],
+  },
+   {
+    question:
+      "Dans la série Phinéas et Ferb, quel animal est en réalité un agent secret ?",
+    answers: [
+      { text: "Le chien Balthazar", correct: false },
+      {
+        text: "Perry l'ornithorynque",
+        correct: true,
+      },
+      {
+        text: "le Hamster Dexter",
+        correct: false,
+      },
+      { text: "Le chat Milou", correct: false },
+    ],
+  },
+  {
+    question:
+      "Dans Encanto, quel est le pouvoir de la cousine Dolores Madrigal ?",
+    answers: [
+      { text: "Elle peut voler", correct: false },
+      {
+        text: "Elle lit dans les pensées",
+        correct: false,
+      },
+      {
+        text: "Elle entend tout, même les murmures",
+        correct: true,
+      },
+      { text: "Elle contrôle les sons", correct: false },
+    ],
+  },
 ];
 let isenabled = true;
+let timerElement = document.getElementById("timer") as HTMLElement;
+let countdown: number;
+let timeLeft = 20;
+
 
 const startButton = <HTMLButtonElement>document.getElementById("start-btn");
 const nextButton = <HTMLButtonElement>document.getElementById("next-btn");
 const showQuestion = <HTMLButtonElement>document.getElementById("question");
 const showAnswers = <HTMLButtonElement>document.getElementById("answers");
-//const startButton: HTMLElement | null = document.getElrementById("start-btn");`
 let currentQuestionIndex = 0;
 let score = 0;
 startButton.addEventListener("click", () => {
@@ -93,16 +176,20 @@ startButton.addEventListener("click", () => {
   score = 0;
   startButton.innerText = "Recommencer le quiz";
   showQuestion.innerText = `${questions[currentQuestionIndex]?.question}`;
-
   showAnswers.classList.remove("visible");
+
   renderAnswerButtons();
 });
 function renderAnswerButtons() {
   resetState(); ///this will reset by each question
   let currentQuestion: any = questions[currentQuestionIndex];
   let questionNumber = currentQuestionIndex + 1;
-  showQuestion.innerHTML = questionNumber + ". " + currentQuestion.question;
-
+  if(currentQuestionIndex < 10){
+showQuestion.innerHTML = questionNumber + ". " + currentQuestion.question;
+  }
+  else{
+    showQuestion.style.display = "none"
+  }
   currentQuestion.answers.forEach((answers: any) => {
     const button = <HTMLElement>document.createElement("button");
     button.innerHTML = answers.text;
@@ -122,17 +209,16 @@ function renderAnswerButtons() {
           button.style.backgroundColor = "red";
         }
         isenabled = false;
+        clearInterval(countdown);
       }
     });
   });
+  startCountdown();
 }
 
 nextButton.addEventListener("click", () => {
   isenabled = true;
   currentQuestionIndex++;
-  questions.forEach(() => {
-    console.log(`${questions[currentQuestionIndex]?.question}`);
-  });
   showQuestion.innerText = `${questions[currentQuestionIndex]?.question}`;
   renderAnswerButtons();
 });
@@ -144,3 +230,28 @@ function resetState() {
     showAnswers.removeChild(showAnswers.firstChild);
   }
 }
+function startCountdown() {
+  clearInterval(countdown); // stoppe un éventuel timer précédent
+  timeLeft = 20;
+  timerElement.innerText = `⏳ Temps restant : ${timeLeft}s`;
+
+  countdown = window.setInterval(() => {
+    timeLeft--;
+    timerElement.innerText = `⏳ Temps restant : ${timeLeft}s`;
+
+    // Quand le temps arrive à zéro :
+    if (timeLeft <= 0) {
+      clearInterval(countdown);
+      timerElement.innerText = "⏰ Temps écoulé !";
+      isenabled = false; // bloque les clics
+
+      // On désactive les boutons de réponse
+      const buttons = document.querySelectorAll(".btn");
+      buttons.forEach((btn) => {
+        (btn as HTMLButtonElement).disabled = true;
+        (btn as HTMLButtonElement).style.opacity = "0.5";
+      });
+    }
+  }, 1000);
+}
+
