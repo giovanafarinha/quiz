@@ -17,5 +17,6 @@
   "bugs": {
     "url": "https://github.com/giovanafarinha/quiz/issues"
   },
-  "homepage": "https://github.com/giovanafarinha/quiz#readme"
+  "homepage": "https://github.com/giovanafarinha/quiz#readme",
+  "type": "module"
 }
