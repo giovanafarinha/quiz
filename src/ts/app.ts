@@ -48,6 +48,12 @@ function renderQuestion() {
     nextButton.style.display = "none";
     feedbackElement.style.display = "none";
    }
+   if (currentQuestionIndex === questions.length - 1) {
+    nextButton.innerText = "Voir le score final";
+  }
+  else {
+    nextButton.innerText = "Question suivante";
+  }
 }
 //pour afficher les réponses
 function renderAnswers() {
@@ -60,14 +66,13 @@ function renderAnswers() {
 
     button.addEventListener("click", () => {
       if (isenabled) {
-        let feedbackElement = <HTMLButtonElement>(
+        let feedbackElement = <HTMLElement>(
           document.getElementById("feedback")
         ); //lorsqu'on clique sur une réponse, affiche si c'est bon ou pas et annule les autres réponses
         if (answers.correct === true) {
-          feedbackElement.innerText = "Bonne réponse !";
+        feedbackElement.innerText = "Bonne réponse !";
           button.style.backgroundColor = "green"; //modification du CSS dans le JS
           score++;
-          scoreElement.innerText = `⭐ Score : ${score} ⭐`;
         } else {
           feedbackElement.innerText = "Mauvaise réponse !";
           button.style.backgroundColor = "red";
@@ -94,9 +99,9 @@ nextButton.addEventListener("click", () => {
   isenabled = true;
   currentQuestionIndex++;
   showQuestion.innerText = `${questions[currentQuestionIndex]?.question}`;
+  feedbackElement.innerText = ""; //annulation des messages de feedback
   renderQuestion();
   renderAnswers();
-  feedbackElement.innerText = ""; //annulation des messages de feedback
 });
 
 function startCountdown() {
@@ -124,16 +129,17 @@ function startCountdown() {
   }, 1000); //pour éviter que les secondes défilent trop vite;
 }
 
+//fonction pour recommencer le quiz
 function restartQuiz() {
   currentQuestionIndex = 0;
   score = 0;
-  startButton.innerText = "Rejouer le quiz";
-  renderQuestion();
-  renderAnswers();
-  scoreElement.innerText = `⭐ Score : ${score} ⭐`;
+  scoreElement.innerText = "";
   feedbackElement.innerText = "";
+  feedbackElement.style.display = "block";
   showQuestion.style.display = "block";
   timerElement.style.display = "block";
+  renderQuestion();
+  renderAnswers();
 }
 
 startButton.addEventListener("click", restartQuiz);
