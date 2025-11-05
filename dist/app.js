@@ -19,9 +19,17 @@ startButton.addEventListener("click", () => {
     startButton.innerText = "Recommencer le quiz";
     showQuestion.innerText = `${questions[currentQuestionIndex]?.question}`;
     showAnswers.classList.remove("visible");
+    shuffleArray(questions);
     renderQuestion();
     renderAnswers();
 });
+//fonction pour mélanger les questions
+function shuffleArray(array) {
+    for (let i = questions.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
 //fonction pour modifier les réponses lorsqu'on clique sur question suivante
 function resetState() {
     ///removed the answer 1/ answer 2/ answer 3/
