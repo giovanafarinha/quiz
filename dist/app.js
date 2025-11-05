@@ -14,6 +14,8 @@ let score = 0;
 startButton.addEventListener("click", () => {
     currentQuestionIndex = 0;
     score = 0;
+    startButton.style.display = "flex";
+    startButton.style.marginTop = "1px";
     startButton.innerText = "Recommencer le quiz";
     showQuestion.innerText = `${questions[currentQuestionIndex]?.question}`;
     showAnswers.classList.remove("visible");
@@ -53,7 +55,7 @@ function renderQuestion() {
 //pour afficher les réponses
 function renderAnswers() {
     let currentQuestion = questions[currentQuestionIndex];
-    currentQuestion.answers.forEach((answers) => {
+    currentQuestion?.answers.forEach((answers) => {
         const button = document.createElement("button");
         button.innerHTML = answers.text;
         button.classList.add("btn"); //ajout de la classe btn aux boutons de réponses
@@ -113,7 +115,7 @@ function startCountdown() {
                 btn.style.opacity = "0.5";
             });
         }
-    }, 1000); //pour éviter que les secondes défilent trop vite;
+    }, 1000); //pour éviter que les secondes défilent trop vite
 }
 //fonction pour recommencer le quiz
 function restartQuiz() {
