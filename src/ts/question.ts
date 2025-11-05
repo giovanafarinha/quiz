@@ -1,162 +1,162 @@
 const questions = [
   {
-    question: "Dans Le Roi Lion, comment s’appelle le père de Simba ?",
+    question: "Quel méchant veut absolument capturer 101 dalmatiens pour leur fourrure ?",
     answers: [
       {
-        text: "Mufasa",
-        correct: true
+        text: "Ursula",
+        correct: false
         }, 
-      {
-        text: "Scar",
-        correct: false,
-      },
-      {
-        text: "Rafiki",
-        correct: false,
-      },
-      { text: "Zazu", correct: false },
-    ],
-  },
-  {
-    question: "Dans Les Nouveaux Héros, quel est le nom du robot créé par Tadashi ?",
-    answers: [
-      { text: "Maxbot", correct: false },
-      {
-        text: "Baymax",
-        correct: true,
-      },
-      {
-        text: "Bot-X",
-        correct: false,
-      },
-      { text: "Tadash-01", correct: false },
-    ],
-  },
-  {
-    question: "Dans Toy Story, quel est le nom du cow-boy en plastique ?",
-    answers: [
-      { text: "Buzz", correct: false },
-      {
-        text: "Woody",
-        correct: true,
-      },
-      {
-        text: "Jessie",
-        correct: false,
-      },
-      { text: "Rex", correct: false },
-    ],
-  },
-  {
-    question:
-      "Dans Blanche-Neige et les Sept Nains, quel est le véritable nom de la Méchante Reine ?",
-    answers: [
-      { text: "Morgane", correct: false },
       {
         text: "Maléfique",
         correct: false,
       },
       {
-        text: "Grimhilde",
+        text: "Cruella d'Enfer",
         correct: true,
       },
-      { text: "Gothel", correct: false },
+      { text: "Lady Tremaine", correct: false },
+    ],
+  },
+  {
+    question: "Quel est le nom du sorcier qui aide Arthur dans Merlin l’Enchanteur et qui affronte Madame Mim ?",
+    answers: [
+      { text: "Merlin", correct: true },
+      {
+        text: "Gandalf",
+        correct: false,
+      },
+      {
+        text: "Yen Sid",
+        correct: false,
+      },
+      { text: "Archimède", correct: false },
+    ],
+  },
+  {
+    question: "Quel méchant Disney chante Soyez prêtes dans son film ?",
+    answers: [
+      { text: "Scar", correct: true },
+      {
+        text: "Jafar",
+        correct: false,
+      },
+      {
+        text: "Hades",
+        correct: false,
+      },
+      { text: "Frollo", correct: false },
     ],
   },
   {
     question:
-      "Dans La Reine des Neiges, quel est le nom du royaume d’Elsa et Anna ?",
+      "Dans La Petite Sirène, que prend Ursula à Ariel en échange de jambes humaines ?",
     answers: [
-      { text: "Arendelle", correct: true },
+      { text: "Sa mémoire", correct: false },
       {
-        text: "Athènes",
-        correct: false,
-      },
-      {
-        text: "Atlantica",
-        correct: false,
-      },
-      { text: "Atlantide", correct: false },
-    ],
-  },
-  {
-    question:
-      "Dans Le Monde de Nemo, comment s’appelle le requin végétarien qui devient ami avec Marlin ?",
-    answers: [
-      { text: "Bruce", correct: true },
-      {
-        text: "Marlin",
-        correct: false,
-      },
-      {
-        text: "Crush",
-        correct: false,
-      },
-      { text: "Squirt", correct: false },
-    ],
-  },
-  {
-    question:
-      "Dans les Indestructibles, quel est le pouvoir de Violette ?",
-    answers: [
-      { text: "Elle court très vite", correct: false },
-      {
-        text: "Elle vole",
-        correct: false,
-      },
-      {
-        text: "Elle devient invisible et crée des boucliers",
+        text: "Sa voix",
         correct: true,
       },
-      { text: "Elle change d'apparence", correct: false },
+      {
+        text: "Son trident",
+        correct: false,
+      },
+      { text: "Ses nageoires", correct: false },
     ],
   },
   {
     question:
-      "Dans Star Wars, quel est le nom du petit extraterrestre vert souvent appelé Baby Yoda ?",
+      "Quel objet magique Jafar utilise-t-il pour hypnotiser le Sultan ?",
     answers: [
-      { text: "Yoda", correct: false },
+      { text: "Un miroir", correct: false },
       {
-        text: "Yaddle",
+        text: "Une bague",
         correct: false,
       },
       {
-        text: "Grogu",
+        text: "Une canne en forme de cobra",
         correct: true,
       },
-      { text: "Gizmo", correct: false },
+      { text: "Un sablier", correct: false },
+    ],
+  },
+  {
+    question:
+      "Quel est le nom de la méchante dans La Belle au bois dormant ?",
+    answers: [
+      { text: "Morgane", correct: false },
+      {
+        text: "Maléfique",
+        correct: true,
+      },
+      {
+        text: "Gothel",
+        correct: false,
+      },
+      { text: "Médusa", correct: false },
+    ],
+  },
+  {
+    question:
+      "Dans Hercule, quel est le but d’Hadès ?",
+    answers: [
+      { text: "Voler l'Olympe", correct: false },
+      {
+        text: "Libérer les Titans",
+        correct: true,
+      },
+      {
+        text: "Devenir roi des humains",
+        correct: false,
+      },
+      { text: "Détruire Zeus", correct: false },
+    ],
+  },
+  {
+    question:
+      "Quel méchant Disney est inspiré d’un personnage historique réel ?",
+    answers: [
+      { text: "Shan Yu", correct: true },
+      {
+        text: "Capitaine Crochet",
+        correct: false,
+      },
+      {
+        text: "Yzma",
+        correct: false,
+      },
+      { text: "Ratigan", correct: false },
     ],
   },
    {
     question:
-      "Dans la série Phinéas et Ferb, quel animal est en réalité un agent secret ?",
+      "Dans Raiponce, que veut garder Mère Gothel pour elle seule ?",
     answers: [
-      { text: "Le chien Balthazar", correct: false },
+      { text: "La couronne", correct: false },
       {
-        text: "Perry l'ornithorynque",
-        correct: true,
-      },
-      {
-        text: "le Hamster Dexter",
+        text: "La fleur magique",
         correct: false,
       },
-      { text: "Le chat Milou", correct: false },
+      {
+        text: "La jeunesse éternelle",
+        correct: true,
+      },
+      { text: "Le royaume", correct: false },
     ],
   },
   {
     question:
-      "Dans Encanto, quel est le pouvoir de la cousine Dolores Madrigal ?",
+      "Quel méchant Disney est un chasseur obsédé par sa proie ?",
     answers: [
-      { text: "Elle peut voler", correct: false },
+      { text: "Gaston", correct: true },
       {
-        text: "Elle lit dans les pensées",
+        text: "Clayton",
         correct: false,
       },
       {
-        text: "Elle entend tout, même les murmures",
-        correct: true,
+        text: "Shere Khan",
+        correct: false,
       },
-      { text: "Elle contrôle les sons", correct: false },
+      { text: "Ratcliffe", correct: false },
     ],
   },
 ];
