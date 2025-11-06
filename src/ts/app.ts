@@ -150,6 +150,7 @@ function restartQuiz() {
   feedbackElement.style.display = "block";
   showQuestion.style.display = "block";
   timerElement.style.display = "block";
+  shuffleArray(questions);
   renderQuestion();
   renderAnswers();
 }
