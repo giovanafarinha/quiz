@@ -1,5 +1,5 @@
 @import url("https://fonts.cdnfonts.com/css/new-walt-disney-font");
-@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
 
 html {
   height: 100%;
@@ -46,7 +46,8 @@ h1 {
   margin-top: 10px;
 }
 
-#start-btn, #next-btn {
+#start-btn,
+#next-btn {
   position: relative;
   height: 45px;
   width: 150px;
@@ -56,17 +57,26 @@ h1 {
   border-radius: 50px;
   border: none;
   outline: none;
-  background: radial-gradient(circle at 20% 10%, rgb(208, 130, 20) 14.2% , rgb(239, 6, 88) 89.5%);
+  background: radial-gradient(
+    circle at 20% 10%,
+    rgb(208, 130, 20) 14.2%,
+    rgb(239, 6, 88) 89.5%
+  );
   color: #fff;
   font-family: Comic Neue, sans-serif;
   font-size: 17px;
   cursor: pointer;
 }
 
-#start-btn:hover, #next-btn:hover {
-background: radial-gradient(circle at 10% 20%, rgb(239, 6, 88) 14.2%, rgb(208, 130, 20) 89.5%);
-z-index: 1;
-animation: glow 8s linear infinite;
+#start-btn:hover,
+#next-btn:hover {
+  background: radial-gradient(
+    circle at 10% 20%,
+    rgb(239, 6, 88) 14.2%,
+    rgb(208, 130, 20) 89.5%
+  );
+  z-index: 1;
+  animation: glow 8s linear infinite;
 }
 
 @keyframes glow {
@@ -78,7 +88,8 @@ animation: glow 8s linear infinite;
   }
 }
 
-#start-btn::before, #next-btn::before {
+#start-btn::before,
+#next-btn::before {
   content: "";
   position: absolute;
   background: inherit;
@@ -92,7 +103,8 @@ animation: glow 8s linear infinite;
   transition: opacity 0.5s;
 }
 
-#start-btn:hover::before, #next-btn:hover::before {
+#start-btn:hover::before,
+#next-btn:hover::before {
   opacity: 1;
   z-index: -1;
 }
@@ -126,17 +138,17 @@ animation: glow 8s linear infinite;
   background-color: white;
 }
 .btn:hover {
- background-color: black;
+  background-color: black;
   color: #fff;
   transform: scale(1.05);
 }
 
 footer {
-color: black;
-position: fixed;
-bottom: 55px;
-width: 100%;
-font-size: small;
+  color: black;
+  position: fixed;
+  bottom: 55px;
+  width: 100%;
+  font-size: small;
 }
 
 #question {
