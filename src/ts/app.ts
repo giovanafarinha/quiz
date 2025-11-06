@@ -1,78 +1,41 @@
-const question = [
-  {
-    question: "Dans Le Roi Lion, comment s’appelle le père de Simba ?",
-    answers: [
-      { text: "Mufasa", correct: true },
-      {
-        text: "Scar",
-        correct: false,
-      },
-      {
-        text: "Rafiki",
-        correct: false,
-      },
-      { text: "Zazu", correct: false },
-    ],
-    correctAnswer: 1,
-  },
+import questions from "./question.js";
 
-  {
-    question: "Quel est le nom de la princesse dans La Belle et la Bête ?",
-    answers: ["Aurore", "Cendrillon", "Belle", "Ariel"],
-    correctAnswer: 3,
-  },
-
-  {
-    question: "Dans Toy Story, quel est le nom du cow-boy en plastique ?",
-    answers: ["Buzz", "Woody", "Jessie", "Rex"],
-    correctAnswer: 2,
-  },
-  {
-    question:
-      "Dans Blanche-Neige et les Sept Nains, quel est le véritable nom de la Méchante Reine ?",
-    answers: ["Morgane", "Maléfique", "Grimhilde", "Gothel"],
-    correctAnswer: 3,
-  },
-  {
-    question:
-      "Dans La Reine des Neiges, quel est le nom du royaume d’Elsa et Anna ?",
-    answers: ["Arendelle", "Athènes", "Atlantica", "Atlantide"],
-    correctAnswer: 1,
-  },
-];
+let isenabled = true; //lorsqu'on clique sur une réponse, bloque les autres
+let timerElement = document.getElementById("timer") as HTMLElement;
+let countdown: number;
+let timeLeft = 20; //pour le compte à rebours, démarre à 20s
 
 const startButton = <HTMLButtonElement>document.getElementById("start-btn");
 const nextButton = <HTMLButtonElement>document.getElementById("next-btn");
 const showQuestion = <HTMLButtonElement>document.getElementById("question");
 const showAnswers = <HTMLButtonElement>document.getElementById("answers");
-
-//const startButton: HTMLElement | null = document.getElrementById("start-btn");`
+let scoreElement = <HTMLButtonElement>document.getElementById("score");
 let currentQuestionIndex = 0;
 let score = 0;
+
+//fonction pour démarrer le quiz
 startButton.addEventListener("click", () => {
   currentQuestionIndex = 0;
   score = 0;
+  startButton.style.display = "flex";
+  startButton.style.marginTop = "1px";
   startButton.innerText = "Recommencer le quiz";
-  showQuestion.innerText = `${question[currentQuestionIndex]?.question}`;
-
+  showQuestion.innerText = `${questions[currentQuestionIndex]?.question}`;
   showAnswers.classList.remove("visible");
-
+  shuffleArray(questions);
   renderQuestion();
+  renderAnswers();
 });
 
-function renderQuestion() {
-  resetState(); ///this will reset by each question
-  let currentQuestion: any = question[currentQuestionIndex];
-  let questionNumber = currentQuestionIndex + 1;
-  showQuestion.innerHTML = questionNumber + ". " + currentQuestion.question;
-
-  currentQuestion.answers.forEach((answers: any) => {
-    const button = <HTMLElement>document.createElement("button");
-    button.innerHTML = answers.text;
-    button.classList.add("btn");
-    showAnswers.appendChild(button);
-  });
+//fonction pour mélanger les questions
+function shuffleArray(array: any[]): void {
+  for (let i = questions.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
 }
+
+//fonction pour modifier les réponses lorsqu'on clique sur question suivante
 function resetState() {
   ///removed the answer 1/ answer 2/ answer 3/
   nextButton.style.display = "flex";
@@ -80,3 +43,116 @@ function resetState() {
     showAnswers.removeChild(showAnswers.firstChild);
   }
 }
+
+//pour afficher les questions
+function renderQuestion() {
+  resetState(); //remplacement des commentaires answer 1, answer 2, etc par une réponse de notre tableau
+  let currentQuestion: any = questions[currentQuestionIndex];
+  let questionNumber = currentQuestionIndex + 1;
+  if (currentQuestionIndex < questions.length) {
+    showQuestion.innerHTML = questionNumber + ". " + currentQuestion.question;
+  } else {
+    showQuestion.style.display = "none";
+    timerElement.style.display = "none";
+    scoreElement.innerText = `🎉 Quiz terminé ! Votre score final est de ${
+      score
+    } / ${questions.length} 🎉`;
+    nextButton.style.display = "none";
+    feedbackElement.style.display = "none";
+   }
+   if (currentQuestionIndex === questions.length - 1) {
+    nextButton.innerText = "Voir le score final";
+  }
+  else {
+    nextButton.innerText = "Question suivante";
+  }
+}
+//pour afficher les réponses
+function renderAnswers() {
+  let currentQuestion: any = questions[currentQuestionIndex];
+  currentQuestion?.answers.forEach((answers: any) => {
+    const button = <HTMLElement>document.createElement("button");
+    button.innerHTML = answers.text;
+    button.classList.add("btn"); //ajout de la classe btn aux boutons de réponses
+    showAnswers.appendChild(button); //ajout des boutons de réponses dans le conteneur showAnswers
+
+    button.addEventListener("click", () => {
+      if (isenabled) {
+        let feedbackElement = <HTMLElement>(
+          document.getElementById("feedback")
+        ); //lorsqu'on clique sur une réponse, affiche si c'est bon ou pas et annule les autres réponses
+        if (answers.correct === true) {
+        feedbackElement.innerText = "Bonne réponse !";
+          button.style.backgroundColor = "green"; //modification du CSS dans le JS
+          score++;
+        } else {
+          feedbackElement.innerText = "Mauvaise réponse !";
+          button.style.backgroundColor = "red";
+        }
+        isenabled = false;
+        clearInterval(countdown); // stoppe le timer quand on a répondu
+        // On désactive les autres boutons de réponse
+        const buttons = document.querySelectorAll(".btn");
+        buttons.forEach((btn) => {
+          (btn as HTMLButtonElement).disabled = true;
+          (btn as HTMLButtonElement).style.opacity = "0.5";
+        });
+      }
+    });
+  });
+  startCountdown();
+}
+
+//création de variables pour le feedback
+let feedbackElement = <HTMLButtonElement>document.getElementById("feedback");
+
+// bouton question suivante
+nextButton.addEventListener("click", () => {
+  isenabled = true;
+  currentQuestionIndex++;
+  showQuestion.innerText = `${questions[currentQuestionIndex]?.question}`;
+  feedbackElement.innerText = ""; //annulation des messages de feedback
+  renderQuestion();
+  renderAnswers();
+});
+
+function startCountdown() {
+  clearInterval(countdown); // stoppe un éventuel timer précédent
+  timeLeft = 20;
+  timerElement.innerText = `⏳ Temps restant : ${timeLeft}s`;
+
+  countdown = window.setInterval(() => {
+    timeLeft--;
+    timerElement.innerText = `⏳ Temps restant : ${timeLeft}s`;
+
+    // Quand le temps arrive à zéro :
+    if (timeLeft <= 0) {
+      clearInterval(countdown);
+      timerElement.innerText = "⏰ Temps écoulé !";
+      isenabled = false; // bloque les clics
+
+      // On désactive les boutons de réponse
+      const buttons = document.querySelectorAll(".btn");
+      buttons.forEach((btn) => {
+        (btn as HTMLButtonElement).disabled = true;
+        (btn as HTMLButtonElement).style.opacity = "0.5";
+      });
+    }
+  }, 1000); //pour éviter que les secondes défilent trop vite
+}
+
+//fonction pour recommencer le quiz
+function restartQuiz() {
+  currentQuestionIndex = 0;
+  score = 0;
+  scoreElement.innerText = "";
+  feedbackElement.innerText = "";
+  feedbackElement.style.display = "block";
+  showQuestion.style.display = "block";
+  timerElement.style.display = "block";
+  shuffleArray(questions);
+  renderQuestion();
+  renderAnswers();
+}
+
+startButton.addEventListener("click", restartQuiz);
